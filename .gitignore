@@ -1,0 +1,7 @@
+# macOS
+.DS_Store
+__MACOSX/
+._*
+.AppleDouble
+.Spotlight-V100
+.Trashes

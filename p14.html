@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nappilos™ - Product Details</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Nunito:wght@300;400;500;600;700;800&family=Fredoka:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --green-deep:#6b5b95;
+  --green-mid:#9b8bb4;
+  --green-light:#c8b8d9;
+  --green-pale:#f5f0fa;
+  --yellow-warm:#ffb347;
+  --yellow-light:#fff5e6;
+  --orange-soft:#ff9a76;
+  --pink-soft:#ff8fab;
+  --purple-soft:#b8a1d9;
+  --blue-soft:#87ceeb;
+  --cream:#fefcfb;
+  --white:#ffffff;
+  --dark:#2d2a3e;
+  --gray:#7a7589;
+  --radius-sm:8px;
+  --radius-md:16px;
+  --radius-lg:24px;
+  --radius-xl:32px;
+  --shadow-sm:0 2px 8px rgba(107,91,149,0.08);
+  --shadow-md:0 4px 20px rgba(107,91,149,0.12);
+  --shadow-lg:0 8px 40px rgba(107,91,149,0.15);
+  --font-display:'Fredoka',sans-serif;
+  --font-heading:'Baloo 2',sans-serif;
+  --font-body:'Nunito',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);color:var(--dark);background:var(--cream);line-height:1.6}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+
+.navbar{
+  background:rgba(254,252,251,0.95);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(107,91,149,0.08);
+  padding:0 24px;position:sticky;top:0;z-index:99;
+}
+.nav-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:70px}
+.nav-logo img{height:44px;width:auto}
+.nav-links{display:flex;align-items:center;gap:6px}
+.nav-links a{
+  padding:8px 16px;border-radius:var(--radius-sm);
+  font-family:var(--font-heading);font-weight:600;font-size:0.9rem;
+  color:var(--dark);transition:all 0.25s;
+}
+.nav-links a:hover{background:var(--green-pale);color:var(--green-deep)}
+.nav-back{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:8px 16px;border-radius:var(--radius-sm);
+  font-family:var(--font-heading);font-weight:600;font-size:0.9rem;
+  color:var(--green-deep);transition:all 0.25s;
+}
+.nav-back:hover{background:var(--green-pale)}
+
+.product-page{max-width:1280px;margin:0 auto;padding:40px 24px}
+.product-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.product-image{
+  background:var(--white);border-radius:var(--radius-xl);
+  padding:40px;box-shadow:var(--shadow-md);
+  position:relative;overflow:hidden;
+}
+.product-image img{width:100%;border-radius:var(--radius-lg)}
+.product-badge{
+  position:absolute;top:20px;right:20px;
+  background:linear-gradient(135deg,var(--orange-soft),var(--pink-soft));
+  color:var(--white);padding:8px 18px;border-radius:50px;
+  font-family:var(--font-heading);font-size:0.8rem;font-weight:700;
+  box-shadow:0 2px 10px rgba(255,140,118,0.3);
+}
+
+.product-info h1{
+  font-family:var(--font-display);font-size:2.2rem;font-weight:700;
+  color:var(--green-deep);margin-bottom:12px;line-height:1.2;
+}
+.product-tagline{
+  font-size:1.1rem;color:var(--gray);font-style:italic;margin-bottom:24px;
+}
+.product-desc{
+  font-size:1rem;color:var(--dark);line-height:1.8;margin-bottom:32px;
+}
+
+.product-meta{
+  background:var(--green-pale);border-radius:var(--radius-lg);
+  padding:24px;margin-bottom:32px;
+}
+.meta-item{
+  display:flex;align-items:center;gap:12px;
+  padding:10px 0;border-bottom:1px solid rgba(107,91,149,0.1);
+}
+.meta-item:last-child{border-bottom:none}
+.meta-label{
+  font-family:var(--font-heading);font-weight:700;font-size:0.9rem;
+  color:var(--green-deep);min-width:100px;
+}
+.meta-value{font-size:0.95rem;color:var(--dark)}
+
+.product-features h3{
+  font-family:var(--font-heading);font-weight:700;font-size:1.2rem;
+  color:var(--green-deep);margin-bottom:16px;
+}
+.features-list{list-style:none}
+.features-list li{
+  padding:10px 0;padding-left:28px;position:relative;
+  font-size:0.95rem;color:var(--dark);line-height:1.6;
+}
+.features-list li::before{
+  content:'✓';position:absolute;left:0;top:10px;
+  color:var(--green-deep);font-weight:700;font-size:1.1rem;
+}
+
+.product-cta{
+  margin-top:40px;padding:32px;
+  background:linear-gradient(135deg,var(--yellow-light),var(--green-pale));
+  border-radius:var(--radius-lg);text-align:center;
+}
+.product-cta h3{
+  font-family:var(--font-heading);font-weight:700;font-size:1.3rem;
+  color:var(--green-deep);margin-bottom:12px;
+}
+.product-cta p{font-size:0.95rem;color:var(--gray);margin-bottom:20px}
+.btn-whatsapp{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:14px 28px;border-radius:var(--radius-lg);
+  background:linear-gradient(135deg,#25d366,#128c7e);
+  color:var(--white);font-family:var(--font-heading);font-weight:700;
+  font-size:1rem;transition:all 0.3s;
+  box-shadow:0 4px 15px rgba(37,211,102,0.3);
+}
+.btn-whatsapp:hover{transform:translateY(-2px);box-shadow:0 6px 25px rgba(37,211,102,0.4)}
+
+.related-section{margin-top:80px;padding-top:60px;border-top:2px solid var(--green-pale)}
+.related-section h2{
+  font-family:var(--font-display);font-size:1.8rem;font-weight:700;
+  color:var(--green-deep);text-align:center;margin-bottom:40px;
+}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:20px}
+.related-card{
+  background:var(--white);border-radius:var(--radius-md);
+  overflow:hidden;transition:all 0.3s;border:1px solid rgba(0,0,0,0.05);
+}
+.related-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.related-card-img{height:180px;overflow:hidden}
+.related-card-img img{width:100%;height:100%;object-fit:cover}
+.related-card-info{padding:16px}
+.related-card-info h4{
+  font-family:var(--font-heading);font-weight:700;font-size:0.95rem;
+  color:var(--dark);margin-bottom:4px;
+}
+.related-card-info p{font-size:0.8rem;color:var(--gray)}
+
+.footer{background:var(--dark);color:rgba(255,255,255,0.8);padding:40px 24px 20px;margin-top:80px}
+.footer-inner{max-width:1280px;margin:0 auto;text-align:center}
+.footer-logo img{height:40px;margin:0 auto 16px;filter:brightness(0) invert(1)}
+.footer-text{font-size:0.85rem;opacity:0.6;margin-bottom:16px}
+.footer-links{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-bottom:20px}
+.footer-links a{font-size:0.85rem;opacity:0.7;transition:opacity 0.3s}
+.footer-links a:hover{opacity:1;color:var(--green-light)}
+.footer-copy{font-size:0.8rem;opacity:0.5}
+
+@media(max-width:768px){
+  .product-grid{grid-template-columns:1fr;gap:40px}
+  .product-info h1{font-size:1.8rem}
+  .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><img src="images/logo.jpeg" alt="Nappilos™"></a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-back">&#x2190; Back to Home</a>
+      <a href="https://baby.nappilos.com">Baby</a>
+      <a href="https://kids.nappilos.com">Kids</a>
+    </div>
+  </div>
+</nav>
+
+<main class="product-page" id="productPage"></main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-logo"><img src="images/logo.jpeg" alt="Nappilos™"></div>
+    <p class="footer-text">Creating safe, joyful play experiences for children worldwide</p>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="https://baby.nappilos.com">Baby Store</a>
+      <a href="https://kids.nappilos.com">Kids Store</a>
+      <a href="https://wa.me/917382583039">Contact</a>
+    </div>
+    <p class="footer-copy">&copy; 2026 NAPPILOS™ — All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="products.js"></script>
+<script>
+const productId = window.location.pathname.split('/').pop().replace('.html','');
+const product = products[productId];
+
+if (!product) {
+  document.getElementById('productPage').innerHTML = '<h1 style="text-align:center;padding:80px 24px">Product not found</h1>';
+} else {
+  document.title = `${product.name} | Nappilos™`;
+  
+  // Get 4 random related products
+  const allIds = Object.keys(products).filter(id => id !== productId);
+  const relatedIds = allIds.sort(() => 0.5 - Math.random()).slice(0, 4);
+  const relatedHtml = relatedIds.map(id => {
+    const p = products[id];
+    return `
+      <a href="${id}.html" class="related-card">
+        <div class="related-card-img"><img src="${p.img}" alt="${p.name}"></div>
+        <div class="related-card-info">
+          <h4>${p.name}</h4>
+          <p>${p.category}</p>
+        </div>
+      </a>
+    `;
+  }).join('');
+  
+  const featuresHtml = product.features.map(f => `<li>${f}</li>`).join('');
+  
+  document.getElementById('productPage').innerHTML = `
+    <div class="product-grid">
+      <div class="product-image">
+        <span class="product-badge">Launching Soon</span>
+        <img src="${product.img}" alt="${product.name}">
+      </div>
+      <div class="product-info">
+        <h1>${product.name}</h1>
+        <p class="product-tagline">${product.tagline}</p>
+        <p class="product-desc">${product.desc}</p>
+        
+        <div class="product-meta">
+          <div class="meta-item">
+            <span class="meta-label">Category</span>
+            <span class="meta-value">${product.category}</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Age Group</span>
+            <span class="meta-value">${product.age}</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Material</span>
+            <span class="meta-value">${product.material}</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Color/Print</span>
+            <span class="meta-value">${product.color}</span>
+          </div>
+        </div>
+        
+        <div class="product-features">
+          <h3>Key Features</h3>
+          <ul class="features-list">${featuresHtml}</ul>
+        </div>
+        
+        <div class="product-cta">
+          <h3>Be the First to Know!</h3>
+          <p>This product is launching soon. Get notified on WhatsApp when it's available.</p>
+          <a href="https://wa.me/917382583039?text=Hi%20Nappilos!%20I'm%20interested%20in%20the%20${encodeURIComponent(product.name)}.%20Please%20notify%20me%20when%20it%20launches!" class="btn-whatsapp">
+            &#x1F4AC; Notify Me on WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="related-section">
+      <h2>You May Also Like</h2>
+      <div class="related-grid">${relatedHtml}</div>
+    </div>
+  `;
+}
+</script>
+</body>
+</html>

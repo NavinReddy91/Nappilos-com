@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Join MFG | Nappilos</title>
+    <meta name="description" content="Manufacturing partnership page for white label and private label inquiries with Nappilos." />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap");
+      :root{--green:#228B22;--pink:#FF6B9D;--orange:#FF8A65;--ink:#2D3047;--muted:#6B6B8D;--paper:#FFFBF5;--line:rgba(255,107,157,.16)}
+      *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:"Plus Jakarta Sans",system-ui,sans-serif}a{text-decoration:none;color:inherit}.top-banner{overflow:hidden;padding:12px 0;background:linear-gradient(135deg,#9B59B6,#E74C3C,#F39C12,#E91E63);color:white;font:900 clamp(.75rem,1.2vw,1.05rem) "Nunito",sans-serif;white-space:nowrap}.top-banner span{display:inline-block;padding-left:100%;animation:marquee 16s linear infinite}@keyframes marquee{to{transform:translateX(-100%)}}
+      .nav{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px clamp(18px,5vw,56px);background:#FFFBF5;box-shadow:0 2px 8px rgba(0,0,0,.08);border-bottom:1px solid var(--line)}.logo img{height:50px}.menu{display:flex;align-items:center;gap:24px;color:#5A5A7A;font-weight:800;font-size:.9rem}.menu a:hover{color:var(--pink)}.cart{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;background:linear-gradient(135deg,var(--pink),var(--orange));color:white!important;box-shadow:0 6px 18px rgba(255,107,157,.28)}.toggle{display:none;width:44px;height:44px;border:2px solid var(--green);border-radius:12px;background:white;color:var(--green)}.toggle span{display:block;width:20px;height:2px;margin:5px auto;background:currentColor}
+      .hero{padding:clamp(58px,8vw,104px) clamp(18px,7vw,86px);background:linear-gradient(135deg,#FFF7F0,#F0FFF4 52%,#FFF0F6)}.eyebrow{margin:0 0 14px;color:var(--pink);font-weight:900;text-transform:uppercase;letter-spacing:.08em;font-size:.78rem}h1,h2,h3,p{margin:0}h1,h2,h3{font-family:"Nunito",sans-serif}h1{max-width:1000px;color:var(--green);font-size:clamp(2.5rem,6vw,5.1rem);line-height:.98;font-weight:900}.lead{max-width:790px;margin-top:22px;color:var(--muted);font-size:clamp(1rem,2vw,1.18rem);line-height:1.8;font-weight:650}
+      .content{padding:clamp(34px,6vw,76px) clamp(18px,7vw,86px)}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.card{padding:clamp(22px,4vw,34px);border:1px solid var(--line);border-radius:22px;background:white;box-shadow:0 12px 32px rgba(0,0,0,.06)}.card h2,.card h3{color:var(--green);font-size:1.35rem}.card p,.card li{margin-top:12px;color:var(--muted);line-height:1.75}.card ul{padding-left:20px}.notice{margin-top:22px;padding:34px;border-radius:26px;background:linear-gradient(135deg,#2D3047,#228B22);color:white}.notice p{margin-top:12px;color:rgba(255,255,255,.86);line-height:1.75}.btn{display:inline-flex;margin-top:24px;padding:15px 26px;border-radius:999px;background:linear-gradient(135deg,#FFD700,#FFA500);color:var(--green);font-weight:900}
+      .footer{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:28px;padding:48px clamp(18px,7vw,86px);background:#2D3047;color:white}.footer img{height:42px}.footer p,.footer a{color:rgba(255,255,255,.78);line-height:1.7}.footer h3{margin-bottom:14px;color:white;font-size:1.05rem}.footer a{display:block;margin:8px 0}
+
+      /* FORM SPECIFIC STYLES */
+      .mfg-form-section { margin-top: 50px; padding: 40px; background: white; border-radius: 30px; border: 1px solid var(--line); }
+      .mfg-form-section h2 { color: var(--green); margin-bottom: 20px; }
+      .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+      .form-group { display: flex; flex-direction: column; gap: 8px; }
+      .form-group label { font-weight: 700; font-size: 0.9rem; color: var(--ink); }
+      .form-group input, .form-group select, .form-group textarea { 
+        padding: 12px; border: 2px solid #f0f0f0; border-radius: 12px; font-family: inherit; font-size: 1rem;
+      }
+      .form-group input:focus { border-color: var(--pink); outline: none; }
+      .full-width { grid-column: span 2; }
+      .sub-section { background: #fff9fb; padding: 20px; border-radius: 15px; border: 1px dashed var(--pink); display: none; margin-top: 10px; }
+      .send-btn { 
+        background: var(--green); color: white; border: none; padding: 18px 40px; 
+        border-radius: 999px; font-weight: 900; font-family: "Nunito"; cursor: pointer; font-size: 1.1rem;
+      }
+
+      @media(max-width:860px){
+        .toggle{display:block}.menu{position:fixed;top:86px;left:12px;right:12px;display:none;flex-direction:column;align-items:stretch;gap:8px;padding:12px;border-radius:22px;background:white;box-shadow:0 18px 45px rgba(45,48,71,.2);max-height:calc(100dvh - 102px);overflow-y:auto;z-index:999}.menu.open{display:flex}.menu a{padding:14px 16px;border-radius:14px;background:#FFF7FB}.cart{justify-content:space-between}.grid,.footer{grid-template-columns:1fr}
+        .form-grid { grid-template-columns: 1fr; } .full-width { grid-column: span 1; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="top-banner"><span>WIGGLE YOUR TOES, GIGGLE YOUR NOSE - LET'S GO NAPPILOS!</span></div>
+    <header class="nav"><a class="logo" href="https://nappilos.com"><img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,fit=crop/m2WqyynkyQFKONDw/bg-2Wa6aj4udIu7PSXY.jpg" alt="Nappilos Logo" /></a><button class="toggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button><nav class="menu" aria-label="Main menu"><a href="https://nappilos.com">Home</a><a href="https://nappilos.com/baby">Baby</a><a href="https://kids.nappilos.com">Kids</a><a href="https://www.youtube.com/@NappilosTV">Watch</a><a href="https://kids.nappilos.com">Toys</a><a href="https://books.nappilos.com">Books</a><a href="https://learn.nappilos.com">Learn</a><a href="https://education.nappilos.com">Education</a><a class="cart" href="cart.html">Cart</a></nav></header>
+    <main>
+      <section class="hero"><p class="eyebrow">Manufacturing partners</p><h1>Join MFG for white label and private label opportunities</h1><p class="lead">This page is for manufacturers who want to work with Nappilos on future product development, white label production, private label production, packaging, and supply partnerships.</p></section>
+      <section class="content">
+        <div class="grid">
+          <article class="card"><h2>Required compliance mindset</h2><p>Manufacturers must follow all applicable government rules, safety regulations, labor requirements, tax requirements, product standards, and documentation rules for their category and operating region.</p></article>
+          <article class="card"><h2>Documents we may request</h2><ul><li>Business registration and tax documents</li><li>Factory or production unit details</li><li>Product safety and testing certificates</li><li>Material declarations and sourcing details</li><li>Quality control process documents</li><li>Export, import, or shipping documents if applicable</li></ul></article>
+          <article class="card"><h2>Product expectations</h2><p>We care about child safety, reliable materials, clean finishing, responsible packaging, consistent quality, and honest product information. Any children product must be suitable for its intended age group.</p></article>
+          <article class="card"><h2>How contact starts</h2><p>Manufacturers can introduce their company, product categories, MOQ, lead times, certifications, sample availability, and whether they support white label, private label, or custom development.</p></article>
+        </div>
+
+        <!-- NEW MANUFACTURER FORM START -->
+        <section class="mfg-form-section">
+            <h2>Partner Onboarding Form</h2>
+            <form id="nappilosMFA">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Legal Company Name</label>
+                        <input type="text" id="company" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Contact Person & Designation</label>
+                        <input type="text" id="contact" required>
+                    </div>
+                    <div class="form-group">
+                        <label>GST Number</label>
+                        <input type="text" id="gst" placeholder="15-digit GSTIN">
+                    </div>
+                    <div class="form-group">
+                        <label>MSME / Udyam Registration</label>
+                        <input type="text" id="msme">
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Main Category Selection</label>
+                        <select id="mainCategory" onchange="updateSubFields()">
+                            <option value="">-- Choose Category --</option>
+                            <option value="Nappilos Baby">Nappilos Baby (0-4 Years)</option>
+                            <option value="Nappilos Kids">Nappilos Kids (5-15 Years)</option>
+                            <option value="Education">Education & School Requirements</option>
+                            <option value="Media">Media & 3D/2D Animation</option>
+                        </select>
+                    </div>
+
+                    <!-- Dynamic Baby Section -->
+                    <div id="babyFields" class="sub-section full-width">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Baby Sub-Category</label>
+                                <select id="babyType">
+                                    <option value="Clothing">Baby Clothing (Newborn to Toddler)</option>
+                                    <option value="Cosmetics">Baby Cosmetics & Care</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Certifications (GOTS, CDSCO, ISO)</label>
+                                <input type="text" id="babyCert">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Kids Section -->
+                    <div id="kidsFields" class="sub-section full-width">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Kids Focus</label>
+                                <select id="kidsType">
+                                    <option value="Toys">Toys (Plastic, Wooden, Educational)</option>
+                                    <option value="Apparel">Apparel & Fashion</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Safety Certs (BIS/ISI, EN71)</label>
+                                <input type="text" id="kidsCert">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Education Section -->
+                    <div id="eduFields" class="sub-section full-width">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>School Products</label>
+                                <input type="text" id="eduItems" placeholder="Bags, Pens, Pencils, etc.">
+                            </div>
+                            <div class="form-group">
+                                <label>Quality Certifications</label>
+                                <input type="text" id="eduCert">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Monthly Production Capacity</label>
+                        <input type="text" id="capacity" placeholder="Units per month">
+                    </div>
+                </div>
+                <button type="button" class="send-btn" onclick="submitToWhatsapp()">Send</button>
+            </form>
+        </section>
+        <!-- NEW MANUFACTURER FORM END -->
+
+        <div class="notice"><h2>Important note</h2><p>Nappilos will review manufacturing opportunities carefully. Submitting interest does not guarantee approval. Final onboarding should include document verification, sample review, quality checks, and written agreement terms.</p><a class="btn" href="mailto:partners@nappilos.com?subject=Nappilos%20Manufacturing%20Partnership">Contact Nappilos MFG</a></div>
+      </section>
+    </main>
+    <footer class="footer"><div><img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,fit=crop/m2WqyynkyQFKONDw/bg-2Wa6aj4udIu7PSXY.jpg" alt="Nappilos Logo" /><p>Creating safe, joyful play experiences with eco-friendly toys and story-based learning.</p></div><div><h3>Explore</h3><a href="https://nappilos.com">Home</a><a href="https://www.youtube.com/@NappilosTV">Watch Stories</a><a href="about.html">About Us</a><a href="faqs.html">FAQs</a><a href="reseller-hub.html">Reseller Hub</a><a href="join-mfg.html">Join MFG</a><a href="careers.html">Careers</a></div><div><h3>Collections</h3><a href="https://nappilos.com/baby">Baby</a><a href="https://kids.nappilos.com">Kids</a><a href="https://books.nappilos.com">Books</a><a href="https://learn.nappilos.com">Learning Toys</a><a href="https://education.nappilos.com">Education</a></div><div><h3>Policies</h3><a href="privacy-policy.html">Privacy Policy</a><a href="terms-and-conditions.html">Terms of Service</a><a href="refund-policy.html">Refund Policy</a></div></footer>
+    
+    <script>
+        // Menu Toggle Script
+        const b=document.querySelector(".toggle"),m=document.querySelector(".menu");
+        b.addEventListener("click",()=>{const o=m.classList.toggle("open");b.setAttribute("aria-expanded",String(o))});
+        document.addEventListener("click",e=>{if(!m.contains(e.target)&&!b.contains(e.target)){m.classList.remove("open");b.setAttribute("aria-expanded","false")}});
+
+        // Dynamic Form Script
+        function updateSubFields() {
+            const val = document.getElementById('mainCategory').value;
+            document.getElementById('babyFields').style.display = (val === 'Nappilos Baby') ? 'block' : 'none';
+            document.getElementById('kidsFields').style.display = (val === 'Nappilos Kids') ? 'block' : 'none';
+            document.getElementById('eduFields').style.display = (val === 'Education') ? 'block' : 'none';
+        }
+
+        function submitToWhatsapp() {
+            const phone = "917382583039"; // Update with your actual WhatsApp Number
+            const company = document.getElementById('company').value;
+            const contact = document.getElementById('contact').value;
+            const mainCat = document.getElementById('mainCategory').value;
+            
+            if(!company || !contact || !mainCat) {
+                alert("Please fill in Company, Contact, and Category.");
+                return;
+            }
+
+            let categoryDetails = "";
+            if(mainCat === 'Nappilos Baby') {
+                categoryDetails = `Type: ${document.getElementById('babyType').value}, Certs: ${document.getElementById('babyCert').value}`;
+            } else if(mainCat === 'Nappilos Kids') {
+                categoryDetails = `Type: ${document.getElementById('kidsType').value}, Certs: ${document.getElementById('kidsCert').value}`;
+            } else if(mainCat === 'Education') {
+                categoryDetails = `Items: ${document.getElementById('eduItems').value}, Certs: ${document.getElementById('eduCert').value}`;
+            }
+
+            const message = `*Nappilos MFG Partnership Inquiry*%0A` +
+                            `------------------------------%0A` +
+                            `*Company:* ${company}%0A` +
+                            `*Contact:* ${contact}%0A` +
+                            `*GST:* ${document.getElementById('gst').value}%0A` +
+                            `*MSME:* ${document.getElementById('msme').value}%0A` +
+                            `*Category:* ${mainCat}%0A` +
+                            `*Details:* ${categoryDetails}%0A` +
+                            `*Capacity:* ${document.getElementById('capacity').value}`;
+
+            window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+        }
+    </script>
+  </body>
+</html>

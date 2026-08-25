@@ -1,0 +1,25 @@
+{
+  "name": "Nappilos - India's Premier Kids Brand",
+  "short_name": "Nappilos",
+  "description": "India's first multi-product kids brand. Premium organic cotton baby & kids products.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fefcfb",
+  "theme_color": "#6b5b95",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "images/logo.jpeg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "images/logo.jpeg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ],
+  "categories": ["shopping", "kids", "baby", "family"],
+  "lang": "en-IN",
+  "dir": "ltr"
+}
