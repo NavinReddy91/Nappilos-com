@@ -345,39 +345,78 @@ button{cursor:pointer;border:none;font-family:inherit}
 }
 .section-subtitle{color:var(--gray);font-size:1.05rem;max-width:600px;margin-bottom:48px}
 
-/* === PRODUCTS === */
-.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px}
+/* === PRODUCTS (Shopify-style) === */
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:24px}
 .product-card{
   background:var(--white);border-radius:var(--radius-lg);
   overflow:hidden;transition:all 0.35s ease;
-  border:1px solid rgba(0,0,0,0.05);
+  border:1px solid rgba(0,0,0,0.05);position:relative;
 }
 .product-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.product-card:hover .product-quick-add{opacity:1;transform:translateY(0)}
 .product-img{
   height:220px;
   display:flex;align-items:center;justify-content:center;
-  font-size:4rem;position:relative;
+  position:relative;overflow:hidden;background:var(--green-pale);
 }
+.product-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s}
+.product-card:hover .product-img img{transform:scale(1.05)}
 .product-img.bg1{background:linear-gradient(135deg,#e8f8f0,#d0f0e0)}
 .product-img.bg2{background:linear-gradient(135deg,#fff4d4,#ffe8a0)}
 .product-img.bg3{background:linear-gradient(135deg,#f0f7ff,#d4e8ff)}
+.product-badges-wrap{position:absolute;top:10px;left:10px;display:flex;flex-direction:column;gap:4px;z-index:2}
 .product-badge{
-  position:absolute;top:12px;left:12px;
-  padding:4px 12px;border-radius:50px;
-  font-size:0.7rem;font-weight:700;font-family:var(--font-heading);
-  background:var(--green-light);color:var(--white);
+  padding:4px 10px;border-radius:50px;
+  font-size:0.68rem;font-weight:700;font-family:var(--font-heading);
+  color:var(--white);
 }
-.product-info{padding:20px}
-.product-name{font-family:var(--font-heading);font-weight:700;font-size:1.05rem;margin-bottom:4px;color:var(--dark)}
-.product-desc{font-size:0.85rem;color:var(--gray);margin-bottom:12px}
+.product-badge.discount{background:linear-gradient(135deg,#e74c3c,#c0392b)}
+.product-badge.bestseller{background:linear-gradient(135deg,var(--yellow-warm),var(--orange-soft))}
+.product-badge.new{background:linear-gradient(135deg,var(--green-deep),var(--purple-soft))}
+.product-badge.stock-low{background:linear-gradient(135deg,#e67e22,#d35400)}
+.product-badge.stock-out{background:linear-gradient(135deg,#95a5a6,#7f8c8d)}
+.product-wishlist-btn{
+  position:absolute;top:10px;right:10px;z-index:2;
+  width:32px;height:32px;border-radius:50%;border:none;
+  background:white;box-shadow:var(--shadow-sm);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.9rem;transition:all 0.2s;opacity:0;
+}
+.product-card:hover .product-wishlist-btn{opacity:1}
+.product-wishlist-btn:hover{transform:scale(1.15)}
+.product-wishlist-btn.active{opacity:1;background:var(--pink-soft);color:white}
+.product-quick-add{
+  position:absolute;bottom:0;left:0;right:0;z-index:2;
+  padding:10px;background:linear-gradient(transparent,rgba(0,0,0,0.6));
+  opacity:0;transform:translateY(10px);transition:all 0.3s;
+}
+.product-quick-add button{
+  width:100%;padding:10px;border:none;border-radius:var(--radius-sm);
+  background:white;color:var(--green-deep);font-family:var(--font-heading);
+  font-weight:700;font-size:0.85rem;cursor:pointer;transition:all 0.2s;
+}
+.product-quick-add button:hover{background:var(--green-deep);color:white}
+.product-info{padding:16px 18px 18px}
+.product-category{font-size:0.72rem;color:var(--green-mid);font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px}
+.product-name{font-family:var(--font-heading);font-weight:700;font-size:0.95rem;margin-bottom:4px;color:var(--dark);line-height:1.3}
+.product-name a{color:inherit;text-decoration:none}
+.product-name a:hover{color:var(--green-deep)}
+.product-desc{font-size:0.8rem;color:var(--gray);margin-bottom:10px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.product-price-row{display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap}
+.product-price{font-family:var(--font-heading);font-size:1.15rem;font-weight:800;color:var(--green-deep)}
+.product-mrp{font-size:0.85rem;color:var(--gray);text-decoration:line-through}
+.product-discount-tag{font-size:0.72rem;color:#2e7d32;background:#e8f5e9;padding:2px 8px;border-radius:50px;font-weight:700}
+.product-stock-indicator{display:flex;align-items:center;gap:5px;font-size:0.75rem;font-weight:600}
+.product-stock-dot{width:7px;height:7px;border-radius:50%}
+.product-stock-dot.in-stock{background:#2e7d32}
+.product-stock-dot.low-stock{background:var(--yellow-warm)}
+.product-stock-dot.out-of-stock{background:#e74c3c}
 .product-bottom{display:flex;align-items:center;justify-content:space-between}
-.product-price{font-family:var(--font-display);font-size:1.2rem;font-weight:700;color:var(--green-deep)}
-.product-price .old{font-size:0.85rem;color:var(--gray);text-decoration:line-through;font-weight:400;margin-left:6px}
 .product-add{
-  width:38px;height:38px;border-radius:50%;
+  width:36px;height:36px;border-radius:50%;
   background:var(--green-pale);color:var(--green-deep);
   display:flex;align-items:center;justify-content:center;
-  font-size:1.2rem;transition:all 0.25s;
+  font-size:1.1rem;transition:all 0.25s;border:none;cursor:pointer;
 }
 .product-add:hover{background:var(--green-deep);color:var(--white)}
 
@@ -883,7 +922,7 @@ button{cursor:pointer;border:none;font-family:inherit}
       <a href="https://education.nappilos.com">Education</a>
     </div>
     <div style="display:flex;align-items:center;gap:12px">
-      <a href="#" class="nav-cart">&#x1F6D2;<span class="badge">0</span></a>
+      <button class="nav-cart" onclick="openCartDrawer()">&#x1F6D2;<span class="badge cart-count" style="display:none">0</span></button>
       <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
@@ -1116,242 +1155,12 @@ button{cursor:pointer;border:none;font-family:inherit}
 <section class="section launching-section">
   <div class="section-inner">
     <div style="text-align:center;margin-bottom:48px">
-      <div class="section-label" style="color:var(--orange-soft)">&#x1F680; Coming Soon to India</div>
-      <h2 class="section-title">20+ Premium Products Launching Soon — India's Most Anticipated Kids Brand</h2>
-      <p class="section-subtitle" style="margin-left:auto;margin-right:auto">Be the first in India to discover our revolutionary collection of 100% organic cotton muslin baby and kids products. From innovative baby clothing to educational toys, every product is crafted with love, safety, and sustainability in mind. Launching across India with free delivery nationwide.</p>
+      <div class="section-label" style="color:var(--orange-soft)">&#x1F6D2; Shop Our Collection</div>
+      <h2 class="section-title">20+ Premium Products — India's Most Loved Kids Brand</h2>
+      <p class="section-subtitle" style="margin-left:auto;margin-right:auto">Discover our complete collection of 100% organic cotton muslin baby products. From swaddles to gift sets, every product is crafted with love, safety, and sustainability. Free delivery across India on orders above &#8377;999.</p>
     </div>
-    <div class="launch-grid reveal">
-      <a href="p1.html" class="launch-card">
-        <div class="launch-card-img">
-          <span class="launch-badge">Launching Soon</span>
-          <img loading="lazy" src="images/muslin-swaddle.png" alt="Muslin Swaddle">
-        </div>
-        <div class="launch-card-info">
-          <h3>Baby Muslin Swaddle</h3>
-          <p>Cloud & teddy bear print — 100% cotton muslin, breathable & gentle</p>
-          <span class="launch-card-link">View Details &#x2192;</span>
-        </div>
-      </a>
-      <a href="p2.html" class="launch-card">
-        <div class="launch-card-img">
-          <span class="launch-badge">Launching Soon</span>
-          <img loading="lazy" src="images/knotted-jabla.png" alt="Knotted Jabla">
-        </div>
-        <div class="launch-card-info">
-          <h3>Knotted Jabla</h3>
-          <p>Heart pattern sleeveless top — adjustable knot shoulders, ultra-soft</p>
-          <span class="launch-card-link">View Details &#x2192;</span>
-        </div>
-      </a>
-      <a href="p3.html" class="launch-card">
-        <div class="launch-card-img">
-          <span class="launch-badge">Launching Soon</span>
-          <img loading="lazy" src="images/knot-type-nappy.png" alt="Knot Type Nappy">
-        </div>
-        <div class="launch-card-info">
-          <h3>Knot Type Nappy</h3>
-          <p>Ice cream print reusable cloth diaper — eco-friendly & chemical-free</p>
-          <span class="launch-card-link">View Details &#x2192;</span>
-        </div>
-      </a>
-      <a href="p4.html" class="launch-card">
-        <div class="launch-card-img">
-          <span class="launch-badge">Launching Soon</span>
-          <img loading="lazy" src="images/snap-button-jabla.png" alt="Snap Button Jabla">
-        </div>
-        <div class="launch-card-info">
-          <h3>Snap Button Jabla</h3>
-          <p>Hot air balloon print vest — easy snap buttons for quick changes</p>
-          <span class="launch-card-link">View Details &#x2192;</span>
-        </div>
-      </a>
-      <a href="p5.html" class="launch-card">
-        <div class="launch-card-img">
-          <span class="launch-badge">Launching Soon</span>
-          <img loading="lazy" src="images/baby-shorts.png" alt="Baby Shorts">
-        </div>
-        <div class="launch-card-info">
-          <h3>Baby Shorts</h3>
-          <p>Cherry print muslin shorts — elastic waistband, breathable & comfy</p>
-          <span class="launch-card-link">View Details &#x2192;</span>
-        </div>
-      </a>
-      <a href="p6.html" class="launch-card">
-        <div class="launch-card-img">
-          <span class="launch-badge">Launching Soon</span>
-          <img loading="lazy" src="images/comfy-dreams-night-suit-blue.png" alt="Comfy Dreams Night Suit">
-        </div>
-        <div class="launch-card-info">
-          <h3>Comfy Dreams Night Suit (Blue)</h3>
-          <p>Turtle print 2-piece sleepwear — soft, lightweight, perfect for sweet dreams</p>
-          <span class="launch-card-link">View Details &#x2192;</span>
-        </div>
-      </a>
-      <a href="p7.html" class="launch-card">
-        <div class="launch-card-img">
-          <span class="launch-badge">Launching Soon</span>
-          <img loading="lazy" src="images/comfy-dreams-night-suit-white.png" alt="Comfy Dreams Night Suit">
-        </div>
-        <div class="launch-card-info">
-          <h3>Comfy Dreams Night Suit (White)</h3>
-          <p>Turtle & duck print sleepwear set — breathable cotton for all-night comfort</p>
-          <span class="launch-card-link">View Details &#x2192;</span>
-        </div>
-      </a>
-      <a href="p8.html" class="launch-card">
-        <div class="launch-card-img">
-          <span class="launch-badge">Launching Soon</span>
-          <img loading="lazy" src="images/frock-knot-type.png" alt="Frock Knot Type">
-        </div>
-        <div class="launch-card-info">
-          <h3>Frock — Knot Type</h3>
-          <p>Bird & butterfly print dress — adjustable knot ties, little twirls big smiles</p>
-          <span class="launch-card-link">View Details &#x2192;</span>
-        </div>
-      </a>
-      <a href="p9.html" class="launch-card">
-        <div class="launch-card-img">
-          <span class="launch-badge">Launching Soon</span>
-          <img loading="lazy" src="images/frock-back-button.png" alt="Frock Back Button">
-        </div>
-        <div class="launch-card-info">
-          <h3>Frock — Back Button</h3>
-          <p>Cherry print sleeveless dress — easy back button design, pretty twirls</p>
-          <span class="launch-card-link">View Details &#x2192;</span>
-        </div>
-      </a>
-      <a href="p10.html" class="launch-card">
-        <div class="launch-card-img">
-          <span class="launch-badge">Launching Soon</span>
-          <img loading="lazy" src="images/cap-mittens-booties-set-birds.png" alt="Cap Mittens Booties Set">
-        </div>
-        <div class="launch-card-info">
-          <h3>Cap, Mittens & Booties Set</h3>
-          <p>Bird & heart print 4-piece newborn set — complete daily care essentials</p>
-          <span class="launch-card-link">View Details &#x2192;</span>
-        </div>
-      </a>
-      <a href="p11.html" class="launch-card">
-        <div class="launch-card-img">
-          <span class="launch-badge">Launching Soon</span>
-          <img loading="lazy" src="images/mittens-booties-set-teddy.png" alt="Mittens Booties">
-        </div>
-        <div class="launch-card-info">
-          <h3>Mittens & Booties Set</h3>
-          <p>Teddy bear print — tiny hands & feet warmth, ultra-soft muslin</p>
-          <span class="launch-card-link">View Details &#x2192;</span>
-        </div>
-      </a>
-      <a href="p12.html" class="launch-card">
-        <div class="launch-card-img">
-          <span class="launch-badge">Launching Soon</span>
-          <img loading="lazy" src="images/front-open-frock.png" alt="Front Open Frock">
-        </div>
-        <div class="launch-card-info">
-          <h3>Front Open Frock</h3>
-          <p>Duckling & turtle print dress — easy front-open design for quick changes</p>
-          <span class="launch-card-link">View Details &#x2192;</span>
-        </div>
-      </a>
-      <a href="p13.html" class="launch-card">
-        <div class="launch-card-img">
-          <span class="launch-badge">Launching Soon</span>
-          <img loading="lazy" src="images/baby-cradle.png" alt="Baby Cradle">
-        </div>
-        <div class="launch-card-info">
-          <h3>Baby Cradle (Thottil)</h3>
-          <p>Heart print hanging cradle — gentle rocking, safe & soothing sleep</p>
-          <span class="launch-card-link">View Details &#x2192;</span>
-        </div>
-      </a>
-      <a href="p14.html" class="launch-card">
-        <div class="launch-card-img">
-          <span class="launch-badge">Launching Soon</span>
-          <img loading="lazy" src="images/muslin-wipes.png" alt="Muslin Wipes">
-        </div>
-        <div class="launch-card-info">
-          <h3>Muslin Wipes</h3>
-          <p>Panda print reusable wipes — eco-friendly, chemical-free, highly absorbent</p>
-          <span class="launch-card-link">View Details &#x2192;</span>
-        </div>
-      </a>
-      <a href="p15.html" class="launch-card">
-        <div class="launch-card-img">
-          <span class="launch-badge">Launching Soon</span>
-          <img loading="lazy" src="images/muslin-coord-set-pastel.png" alt="Muslin Co-Ord Set">
-        </div>
-        <div class="launch-card-info">
-          <h3>Muslin Co-Ord Set</h3>
-          <p>Mint, peach & cream matching top & shorts — breathable everyday playwear</p>
-          <span class="launch-card-link">View Details &#x2192;</span>
-        </div>
-      </a>
-      <a href="p16.html" class="launch-card">
-        <div class="launch-card-img">
-          <span class="launch-badge">Launching Soon</span>
-          <img loading="lazy" src="images/cap-mittens-booties-set-multi.png" alt="Cap Mittens Booties Set">
-        </div>
-        <div class="launch-card-info">
-          <h3>Cap, Mittens & Booties Set (Multi)</h3>
-          <p>Cars & leaves print — 0-12 months, secure fit, soft & snug</p>
-          <span class="launch-card-link">View Details &#x2192;</span>
-        </div>
-      </a>
-      <a href="p17.html" class="launch-card">
-        <div class="launch-card-img">
-          <span class="launch-badge">Launching Soon</span>
-          <img loading="lazy" src="images/essential-gift-set.png" alt="Essential Gift Set">
-        </div>
-        <div class="launch-card-info">
-          <h3>Essential Gift Set</h3>
-          <p>5-piece organic cotton set — towel, jabla, swaddle, nappy, wash cloth in gift box</p>
-          <span class="launch-card-link">View Details &#x2192;</span>
-        </div>
-      </a>
-      <a href="p18.html" class="launch-card">
-        <div class="launch-card-img">
-          <span class="launch-badge">Launching Soon</span>
-          <img loading="lazy" src="images/muslin-hooded-towel.png" alt="Hooded Towel">
-        </div>
-        <div class="launch-card-info">
-          <h3>Muslin Hooded Towel</h3>
-          <p>Cloud & teddy bear print — super absorbent, quick-drying, cozy warmth</p>
-          <span class="launch-card-link">View Details &#x2192;</span>
-        </div>
-      </a>
-      <a href="p19.html" class="launch-card">
-        <div class="launch-card-img">
-          <span class="launch-badge">Launching Soon</span>
-          <img loading="lazy" src="images/premium-muslin-swaddles-3pack.png" alt="Premium Muslin Swaddles">
-        </div>
-        <div class="launch-card-info">
-          <h3>Premium Muslin Swaddles (3-Pack)</h3>
-          <p>Leaves, bears & rainbows — 3-layered comfort, multi-use, gift-ready</p>
-          <span class="launch-card-link">View Details &#x2192;</span>
-        </div>
-      </a>
-      <a href="p20.html" class="launch-card">
-        <div class="launch-card-img">
-          <span class="launch-badge">Launching Soon</span>
-          <img loading="lazy" src="images/muslin-coord-set-mint.png" alt="Muslin Co-Ord Set">
-        </div>
-        <div class="launch-card-info">
-          <h3>Muslin Co-Ord Set (Pastel)</h3>
-          <p>Mint & peach tones — lightweight, breathable, made with love</p>
-          <span class="launch-card-link">View Details &#x2192;</span>
-        </div>
-      </a>
-      <a href="p21.html" class="launch-card">
-        <div class="launch-card-img">
-          <span class="launch-badge">Launching Soon</span>
-          <img loading="lazy" src="images/premium-baby-gift-sets.png" alt="Muslin Premium Baby Gift Sets">
-        </div>
-        <div class="launch-card-info">
-          <h3>Muslin Premium Baby Boy & Girl Gift Sets</h3>
-          <p>Curated organic cotton gift sets — beautifully packaged for newborns</p>
-          <span class="launch-card-link">View Details &#x2192;</span>
-        </div>
-      </a>
+    <div class="launch-grid reveal" id="productGrid">
+      <!-- Products dynamically rendered from products.js -->
     </div>
     <div style="text-align:center;margin-top:40px">
       <a href="https://wa.me/917382583039?text=Hi%20Nappilos!%20I%20want%20to%20know%20more%20about%20your%20upcoming%20muslin%20collection" class="btn btn-primary">Get Notified on WhatsApp &#x2192;</a>
@@ -1585,7 +1394,83 @@ button{cursor:pointer;border:none;font-family:inherit}
 </footer>
 
 <!-- JS -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script src="products.js"></script>
+<script src="cart.js"></script>
+<script src="api.js"></script>
+<script>
+// Dynamic product grid rendering (Shopify-style)
+function renderProductGrid() {
+  const grid = document.getElementById('productGrid');
+  if (!grid || typeof products === 'undefined') return;
+
+  const allProducts = getAllProducts().filter(p => p.isActive);
+  grid.innerHTML = allProducts.map(p => {
+    const discount = getDiscount(p);
+    const stockStatus = getStockStatus(p);
+    const inWishlist = typeof NappilosCart !== 'undefined' && NappilosCart.isInWishlist(p.id);
+
+    let badges = '';
+    if (discount > 0) badges += `<span class="product-badge discount">${discount}% OFF</span>`;
+    if (p.isBestseller) badges += `<span class="product-badge bestseller">BESTSELLER</span>`;
+    if (p.isFeatured && !p.isBestseller) badges += `<span class="product-badge new">NEW</span>`;
+    if (stockStatus.class === 'low-stock') badges += `<span class="product-badge stock-low">LOW STOCK</span>`;
+    if (stockStatus.class === 'out-of-stock') badges += `<span class="product-badge stock-out">SOLD OUT</span>`;
+
+    return `
+      <div class="product-card" data-id="${p.id}">
+        <a href="${p.id}.html">
+          <div class="product-img">
+            <div class="product-badges-wrap">${badges}</div>
+            <button class="product-wishlist-btn ${inWishlist ? 'active' : ''}" onclick="event.preventDefault();event.stopPropagation();toggleWishlistFromGrid('${p.id}',this)">
+              ${inWishlist ? '&#x2764;' : '&#x1F90D;'}
+            </button>
+            <img loading="lazy" src="${p.img}" alt="${p.name}">
+            <div class="product-quick-add">
+              <button onclick="event.preventDefault();event.stopPropagation();quickAddToCart('${p.id}')">
+                ${stockStatus.class === 'out-of-stock' ? 'Notify Me' : '&#x1F6D2; Quick Add'}
+              </button>
+            </div>
+          </div>
+        </a>
+        <div class="product-info">
+          <div class="product-category">${p.category}</div>
+          <div class="product-name"><a href="${p.id}.html">${p.name}</a></div>
+          <p class="product-desc">${p.tagline}</p>
+          <div class="product-price-row">
+            <span class="product-price">${formatPrice(p.price)}</span>
+            ${p.compareAtPrice > p.price ? `<span class="product-mrp">${formatPrice(p.compareAtPrice)}</span>` : ''}
+            ${discount > 0 ? `<span class="product-discount-tag">${discount}% OFF</span>` : ''}
+          </div>
+          <div class="product-stock-indicator">
+            <span class="product-stock-dot ${stockStatus.class}"></span>
+            <span style="color:${stockStatus.class === 'in-stock' ? '#2e7d32' : stockStatus.class === 'low-stock' ? '#e67e22' : '#e74c3c'}">${stockStatus.label}</span>
+          </div>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+function quickAddToCart(productId) {
+  const p = products[productId];
+  if (!p || p.stockQuantity === 0) return;
+  const defaultVariant = p.variants && p.variants.length > 0 ? p.variants[0].id : null;
+  NappilosCart.addItem(productId, defaultVariant, 1);
+  openCartDrawer();
+}
+
+function toggleWishlistFromGrid(productId, btn) {
+  const added = NappilosCart.toggleWishlist(productId);
+  btn.classList.toggle('active', added);
+  btn.innerHTML = added ? '&#x2764;' : '&#x1F90D;';
+}
+
+// Render grid on load
+document.addEventListener('DOMContentLoaded', () => {
+  renderProductGrid();
+});
+</script>
+<script>
 // Scroll reveal
 const observer=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible')}})},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));

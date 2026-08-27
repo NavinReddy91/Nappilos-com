@@ -8,158 +8,157 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Nunito:wght@300;400;500;600;700;800&family=Fredoka:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
+/* === RESET & VARIABLES === */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --green-deep:#6b5b95;
-  --green-mid:#9b8bb4;
-  --green-light:#c8b8d9;
-  --green-pale:#f5f0fa;
-  --yellow-warm:#ffb347;
-  --yellow-light:#fff5e6;
-  --orange-soft:#ff9a76;
-  --pink-soft:#ff8fab;
-  --purple-soft:#b8a1d9;
-  --blue-soft:#87ceeb;
-  --cream:#fefcfb;
-  --white:#ffffff;
-  --dark:#2d2a3e;
-  --gray:#7a7589;
-  --radius-sm:8px;
-  --radius-md:16px;
-  --radius-lg:24px;
-  --radius-xl:32px;
-  --shadow-sm:0 2px 8px rgba(107,91,149,0.08);
-  --shadow-md:0 4px 20px rgba(107,91,149,0.12);
+  --green-deep:#6b5b95;--green-mid:#9b8bb4;--green-light:#c8b8d9;--green-pale:#f5f0fa;
+  --yellow-warm:#ffb347;--yellow-light:#fff5e6;--orange-soft:#ff9a76;--pink-soft:#ff8fab;
+  --purple-soft:#b8a1d9;--blue-soft:#87ceeb;--cream:#fefcfb;--white:#ffffff;
+  --dark:#2d2a3e;--gray:#7a7589;
+  --radius-sm:8px;--radius-md:16px;--radius-lg:24px;--radius-xl:32px;
+  --shadow-sm:0 2px 8px rgba(107,91,149,0.08);--shadow-md:0 4px 20px rgba(107,91,149,0.12);
   --shadow-lg:0 8px 40px rgba(107,91,149,0.15);
-  --font-display:'Fredoka',sans-serif;
-  --font-heading:'Baloo 2',sans-serif;
-  --font-body:'Nunito',sans-serif;
+  --font-display:'Fredoka',sans-serif;--font-heading:'Baloo 2',sans-serif;--font-body:'Nunito',sans-serif;
 }
 html{scroll-behavior:smooth}
 body{font-family:var(--font-body);color:var(--dark);background:var(--cream);line-height:1.6}
 a{text-decoration:none;color:inherit}
 img{max-width:100%;display:block}
 
-.navbar{
-  background:rgba(254,252,251,0.95);
-  backdrop-filter:blur(20px);
-  border-bottom:1px solid rgba(107,91,149,0.08);
-  padding:0 24px;position:sticky;top:0;z-index:99;
-}
+/* === NAVBAR === */
+.navbar{background:rgba(254,252,251,0.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(107,91,149,0.08);padding:0 24px;position:sticky;top:0;z-index:99}
 .nav-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:70px}
 .nav-logo img{height:44px;width:auto}
 .nav-links{display:flex;align-items:center;gap:6px}
-.nav-links a{
-  padding:8px 16px;border-radius:var(--radius-sm);
-  font-family:var(--font-heading);font-weight:600;font-size:0.9rem;
-  color:var(--dark);transition:all 0.25s;
-}
+.nav-links a{padding:8px 16px;border-radius:var(--radius-sm);font-family:var(--font-heading);font-weight:600;font-size:0.9rem;color:var(--dark);transition:all 0.25s}
 .nav-links a:hover{background:var(--green-pale);color:var(--green-deep)}
-.nav-back{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:8px 16px;border-radius:var(--radius-sm);
-  font-family:var(--font-heading);font-weight:600;font-size:0.9rem;
-  color:var(--green-deep);transition:all 0.25s;
-}
-.nav-back:hover{background:var(--green-pale)}
+.nav-right{display:flex;align-items:center;gap:10px}
 
-.product-page{max-width:1280px;margin:0 auto;padding:40px 24px}
-.product-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
-.product-image{
-  background:var(--white);border-radius:var(--radius-xl);
-  padding:40px;box-shadow:var(--shadow-md);
-  position:relative;overflow:hidden;
-}
+/* === BREADCRUMB === */
+.breadcrumb{max-width:1280px;margin:0 auto;padding:16px 24px;font-size:0.85rem;color:var(--gray)}
+.breadcrumb a{color:var(--green-deep);font-weight:600}
+.breadcrumb a:hover{text-decoration:underline}
+.breadcrumb span{margin:0 6px;opacity:0.5}
+
+/* === PRODUCT PAGE === */
+.product-page{max-width:1280px;margin:0 auto;padding:0 24px 60px}
+.product-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start}
+
+/* === PRODUCT IMAGE === */
+.product-image-wrap{position:sticky;top:90px}
+.product-image{background:var(--white);border-radius:var(--radius-xl);padding:30px;box-shadow:var(--shadow-md);position:relative;overflow:hidden}
 .product-image img{width:100%;border-radius:var(--radius-lg)}
-.product-badge{
-  position:absolute;top:20px;right:20px;
-  background:linear-gradient(135deg,var(--orange-soft),var(--pink-soft));
-  color:var(--white);padding:8px 18px;border-radius:50px;
-  font-family:var(--font-heading);font-size:0.8rem;font-weight:700;
-  box-shadow:0 2px 10px rgba(255,140,118,0.3);
-}
+.product-badges{position:absolute;top:16px;left:16px;display:flex;flex-direction:column;gap:6px}
+.badge{padding:6px 14px;border-radius:50px;font-family:var(--font-heading);font-size:0.75rem;font-weight:700;color:white}
+.badge-sale{background:linear-gradient(135deg,#e74c3c,#c0392b)}
+.badge-new{background:linear-gradient(135deg,var(--green-deep),var(--purple-soft))}
+.badge-bestseller{background:linear-gradient(135deg,var(--yellow-warm),var(--orange-soft))}
+.badge-outofstock{background:linear-gradient(135deg,#95a5a6,#7f8c8d)}
 
-.product-info h1{
-  font-family:var(--font-display);font-size:2.2rem;font-weight:700;
-  color:var(--green-deep);margin-bottom:12px;line-height:1.2;
-}
-.product-tagline{
-  font-size:1.1rem;color:var(--gray);font-style:italic;margin-bottom:24px;
-}
-.product-desc{
-  font-size:1rem;color:var(--dark);line-height:1.8;margin-bottom:32px;
-}
+/* === PRODUCT INFO === */
+.product-info{padding:10px 0}
+.product-brand{font-family:var(--font-heading);font-size:0.85rem;font-weight:700;color:var(--green-mid);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.product-title{font-family:var(--font-display);font-size:2rem;font-weight:700;color:var(--green-deep);margin-bottom:6px;line-height:1.2}
+.product-tagline{font-size:1rem;color:var(--gray);font-style:italic;margin-bottom:16px}
 
-.product-meta{
-  background:var(--green-pale);border-radius:var(--radius-lg);
-  padding:24px;margin-bottom:32px;
-}
-.meta-item{
-  display:flex;align-items:center;gap:12px;
-  padding:10px 0;border-bottom:1px solid rgba(107,91,149,0.1);
-}
+/* === RATING === */
+.product-rating{display:flex;align-items:center;gap:8px;margin-bottom:16px}
+.stars{color:var(--yellow-warm);font-size:1rem;letter-spacing:2px}
+.rating-text{font-size:0.85rem;color:var(--gray)}
+
+/* === PRICE === */
+.product-price-wrap{display:flex;align-items:baseline;gap:12px;margin-bottom:6px;flex-wrap:wrap}
+.price-current{font-family:var(--font-heading);font-size:2rem;font-weight:800;color:var(--green-deep)}
+.price-mrp{font-size:1.2rem;color:var(--gray);text-decoration:line-through}
+.price-discount{background:#e8f5e9;color:#2e7d32;padding:4px 12px;border-radius:50px;font-size:0.85rem;font-weight:700}
+.price-gst{font-size:0.8rem;color:var(--gray);margin-bottom:20px}
+
+/* === STOCK STATUS === */
+.stock-status{display:flex;align-items:center;gap:8px;margin-bottom:20px;font-size:0.9rem;font-weight:600}
+.stock-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.stock-dot.in-stock{background:#2e7d32;box-shadow:0 0 6px rgba(46,125,50,0.4)}
+.stock-dot.low-stock{background:var(--yellow-warm);box-shadow:0 0 6px rgba(255,179,71,0.4)}
+.stock-dot.out-of-stock{background:#e74c3c;box-shadow:0 0 6px rgba(231,76,60,0.4)}
+.stock-text.in-stock{color:#2e7d32}
+.stock-text.low-stock{color:#e67e22}
+.stock-text.out-of-stock{color:#e74c3c}
+
+/* === VARIANT SELECTOR === */
+.variant-section{margin-bottom:20px}
+.variant-label{font-family:var(--font-heading);font-weight:700;font-size:0.9rem;color:var(--dark);margin-bottom:10px}
+.variant-label span{font-weight:400;color:var(--gray)}
+.variant-options{display:flex;flex-wrap:wrap;gap:8px}
+.variant-btn{padding:10px 20px;border:2px solid rgba(107,91,149,0.15);border-radius:var(--radius-sm);background:white;font-family:var(--font-body);font-size:0.9rem;font-weight:600;color:var(--dark);cursor:pointer;transition:all 0.2s}
+.variant-btn:hover{border-color:var(--green-deep);background:var(--green-pale)}
+.variant-btn.active{border-color:var(--green-deep);background:var(--green-deep);color:white}
+.variant-btn.disabled{opacity:0.4;cursor:not-allowed;text-decoration:line-through}
+
+/* === QUANTITY + ADD TO CART === */
+.add-to-cart-section{display:flex;gap:12px;align-items:stretch;margin-bottom:20px}
+.qty-picker{display:flex;align-items:center;border:2px solid rgba(107,91,149,0.15);border-radius:var(--radius-md);overflow:hidden}
+.qty-btn{width:44px;height:48px;border:none;background:white;font-size:1.3rem;cursor:pointer;color:var(--dark);transition:background 0.2s;display:flex;align-items:center;justify-content:center}
+.qty-btn:hover{background:var(--green-pale)}
+.qty-value{width:50px;text-align:center;font-weight:700;font-size:1rem;border:none;border-left:1px solid rgba(107,91,149,0.1);border-right:1px solid rgba(107,91,149,0.1);display:flex;align-items:center;justify-content:center;height:48px}
+.btn-add-cart{flex:1;padding:14px 28px;border:none;border-radius:var(--radius-md);background:linear-gradient(135deg,var(--green-deep),#8b7ab5);color:white;font-family:var(--font-heading);font-weight:700;font-size:1.05rem;cursor:pointer;transition:all 0.3s;box-shadow:0 4px 15px rgba(107,91,149,0.3);display:flex;align-items:center;justify-content:center;gap:10px}
+.btn-add-cart:hover{transform:translateY(-2px);box-shadow:0 6px 25px rgba(107,91,149,0.4)}
+.btn-add-cart:disabled{opacity:0.5;cursor:not-allowed;transform:none}
+.btn-add-cart.added{background:linear-gradient(135deg,#2e7d32,#43a047)}
+.btn-wishlist{width:48px;height:48px;border:2px solid rgba(107,91,149,0.15);border-radius:var(--radius-md);background:white;cursor:pointer;font-size:1.3rem;display:flex;align-items:center;justify-content:center;transition:all 0.2s}
+.btn-wishlist:hover{border-color:var(--pink-soft);background:#fff0f3}
+.btn-wishlist.active{border-color:var(--pink-soft);background:var(--pink-soft);color:white}
+
+/* === BUY NOW === */
+.btn-buy-now{width:100%;padding:14px;border:2px solid var(--green-deep);border-radius:var(--radius-md);background:white;color:var(--green-deep);font-family:var(--font-heading);font-weight:700;font-size:1rem;cursor:pointer;transition:all 0.2s;margin-bottom:24px}
+.btn-buy-now:hover{background:var(--green-pale)}
+
+/* === PRODUCT META === */
+.product-meta{background:var(--green-pale);border-radius:var(--radius-lg);padding:20px;margin-bottom:24px}
+.meta-item{display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid rgba(107,91,149,0.08);font-size:0.9rem}
 .meta-item:last-child{border-bottom:none}
-.meta-label{
-  font-family:var(--font-heading);font-weight:700;font-size:0.9rem;
-  color:var(--green-deep);min-width:100px;
-}
-.meta-value{font-size:0.95rem;color:var(--dark)}
+.meta-label{font-family:var(--font-heading);font-weight:700;color:var(--green-deep);min-width:90px}
+.meta-value{color:var(--dark)}
 
-.product-features h3{
-  font-family:var(--font-heading);font-weight:700;font-size:1.2rem;
-  color:var(--green-deep);margin-bottom:16px;
-}
+/* === DESCRIPTION === */
+.product-desc-section{margin-bottom:24px}
+.product-desc-section h3{font-family:var(--font-heading);font-weight:700;font-size:1.1rem;color:var(--green-deep);margin-bottom:12px}
+.product-desc{font-size:0.95rem;color:var(--dark);line-height:1.8}
+
+/* === FEATURES === */
+.product-features{margin-bottom:24px}
+.product-features h3{font-family:var(--font-heading);font-weight:700;font-size:1.1rem;color:var(--green-deep);margin-bottom:12px}
 .features-list{list-style:none}
-.features-list li{
-  padding:10px 0;padding-left:28px;position:relative;
-  font-size:0.95rem;color:var(--dark);line-height:1.6;
-}
-.features-list li::before{
-  content:'✓';position:absolute;left:0;top:10px;
-  color:var(--green-deep);font-weight:700;font-size:1.1rem;
-}
+.features-list li{padding:8px 0;padding-left:28px;position:relative;font-size:0.9rem;color:var(--dark);line-height:1.5}
+.features-list li::before{content:'\2713';position:absolute;left:0;top:8px;color:var(--green-deep);font-weight:700;font-size:1rem}
 
-.product-cta{
-  margin-top:40px;padding:32px;
-  background:linear-gradient(135deg,var(--yellow-light),var(--green-pale));
-  border-radius:var(--radius-lg);text-align:center;
-}
-.product-cta h3{
-  font-family:var(--font-heading);font-weight:700;font-size:1.3rem;
-  color:var(--green-deep);margin-bottom:12px;
-}
-.product-cta p{font-size:0.95rem;color:var(--gray);margin-bottom:20px}
-.btn-whatsapp{
-  display:inline-flex;align-items:center;gap:10px;
-  padding:14px 28px;border-radius:var(--radius-lg);
-  background:linear-gradient(135deg,#25d366,#128c7e);
-  color:var(--white);font-family:var(--font-heading);font-weight:700;
-  font-size:1rem;transition:all 0.3s;
-  box-shadow:0 4px 15px rgba(37,211,102,0.3);
-}
-.btn-whatsapp:hover{transform:translateY(-2px);box-shadow:0 6px 25px rgba(37,211,102,0.4)}
+/* === TRUST BADGES === */
+.trust-badges{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px}
+.trust-badge{text-align:center;padding:14px 8px;background:white;border-radius:var(--radius-md);border:1px solid rgba(107,91,149,0.08)}
+.trust-badge-icon{font-size:1.5rem;margin-bottom:4px}
+.trust-badge-text{font-size:0.75rem;font-weight:700;color:var(--green-deep);font-family:var(--font-heading)}
 
-.related-section{margin-top:80px;padding-top:60px;border-top:2px solid var(--green-pale)}
-.related-section h2{
-  font-family:var(--font-display);font-size:1.8rem;font-weight:700;
-  color:var(--green-deep);text-align:center;margin-bottom:40px;
-}
-.related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:20px}
-.related-card{
-  background:var(--white);border-radius:var(--radius-md);
-  overflow:hidden;transition:all 0.3s;border:1px solid rgba(0,0,0,0.05);
-}
+/* === SHARE === */
+.share-section{display:flex;align-items:center;gap:10px;margin-bottom:24px}
+.share-section span{font-family:var(--font-heading);font-weight:700;font-size:0.85rem;color:var(--gray)}
+.share-btn{width:36px;height:36px;border-radius:50%;border:1px solid rgba(107,91,149,0.15);background:white;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:0.9rem;transition:all 0.2s}
+.share-btn:hover{background:var(--green-pale);border-color:var(--green-deep)}
+
+/* === RELATED === */
+.related-section{margin-top:60px;padding-top:40px;border-top:2px solid var(--green-pale)}
+.related-section h2{font-family:var(--font-display);font-size:1.6rem;font-weight:700;color:var(--green-deep);text-align:center;margin-bottom:30px}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px}
+.related-card{background:var(--white);border-radius:var(--radius-md);overflow:hidden;transition:all 0.3s;border:1px solid rgba(0,0,0,0.05)}
 .related-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
-.related-card-img{height:180px;overflow:hidden}
+.related-card-img{height:180px;overflow:hidden;position:relative}
 .related-card-img img{width:100%;height:100%;object-fit:cover}
-.related-card-info{padding:16px}
-.related-card-info h4{
-  font-family:var(--font-heading);font-weight:700;font-size:0.95rem;
-  color:var(--dark);margin-bottom:4px;
-}
-.related-card-info p{font-size:0.8rem;color:var(--gray)}
+.related-card-badge{position:absolute;top:8px;left:8px;background:linear-gradient(135deg,#e74c3c,#c0392b);color:white;padding:3px 10px;border-radius:50px;font-size:0.7rem;font-weight:700}
+.related-card-info{padding:14px}
+.related-card-info h4{font-family:var(--font-heading);font-weight:700;font-size:0.9rem;color:var(--dark);margin-bottom:4px}
+.related-card-info .rc-category{font-size:0.78rem;color:var(--gray);margin-bottom:8px}
+.related-card-info .rc-price{font-family:var(--font-heading);font-weight:800;color:var(--green-deep);font-size:1rem}
+.related-card-info .rc-mrp{font-size:0.8rem;color:var(--gray);text-decoration:line-through;margin-left:6px}
 
-.footer{background:var(--dark);color:rgba(255,255,255,0.8);padding:40px 24px 20px;margin-top:80px}
+/* === FOOTER === */
+.footer{background:var(--dark);color:rgba(255,255,255,0.8);padding:40px 24px 20px;margin-top:60px}
 .footer-inner{max-width:1280px;margin:0 auto;text-align:center}
 .footer-logo img{height:40px;margin:0 auto 16px;filter:brightness(0) invert(1)}
 .footer-text{font-size:0.85rem;opacity:0.6;margin-bottom:16px}
@@ -168,28 +167,49 @@ img{max-width:100%;display:block}
 .footer-links a:hover{opacity:1;color:var(--green-light)}
 .footer-copy{font-size:0.8rem;opacity:0.5}
 
+/* === RESPONSIVE === */
 @media(max-width:768px){
-  .product-grid{grid-template-columns:1fr;gap:40px}
-  .product-info h1{font-size:1.8rem}
+  .product-grid{grid-template-columns:1fr;gap:30px}
+  .product-image-wrap{position:relative;top:0}
+  .product-title{font-size:1.6rem}
+  .price-current{font-size:1.6rem}
   .nav-links{display:none}
+  .trust-badges{grid-template-columns:repeat(3,1fr);gap:8px}
+  .add-to-cart-section{flex-wrap:wrap}
+  .btn-add-cart{min-width:100%}
 }
 </style>
 </head>
 <body>
 
+<!-- NAVBAR -->
 <nav class="navbar">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo"><img src="images/logo.jpeg" alt="Nappilos™"></a>
     <div class="nav-links">
-      <a href="index.html" class="nav-back">&#x2190; Back to Home</a>
+      <a href="index.html">Home</a>
       <a href="https://baby.nappilos.com">Baby</a>
       <a href="https://kids.nappilos.com">Kids</a>
+      <a href="https://www.youtube.com/@NappilosTV">Watch</a>
+      <a href="https://books.nappilos.com">Books</a>
+      <a href="https://learn.nappilos.com">Learn</a>
+    </div>
+    <div class="nav-right">
+      <button class="cart-icon-wrap" onclick="openCartDrawer()">
+        &#x1F6D2; Cart
+        <span class="cart-count" style="display:none">0</span>
+      </button>
     </div>
   </div>
 </nav>
 
+<!-- BREADCRUMB -->
+<div class="breadcrumb" id="breadcrumb"></div>
+
+<!-- PRODUCT PAGE -->
 <main class="product-page" id="productPage"></main>
 
+<!-- FOOTER -->
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-logo"><img src="images/logo.jpeg" alt="Nappilos™"></div>
@@ -205,83 +225,237 @@ img{max-width:100%;display:block}
 </footer>
 
 <script src="products.js"></script>
+<script src="cart.js"></script>
+<script src="api.js"></script>
 <script>
 const productId = window.location.pathname.split('/').pop().replace('.html','');
 const product = products[productId];
+let selectedVariant = null;
+let quantity = 1;
 
 if (!product) {
   document.getElementById('productPage').innerHTML = '<h1 style="text-align:center;padding:80px 24px">Product not found</h1>';
 } else {
   document.title = `${product.name} | Nappilos™`;
-  
-  // Get 4 random related products
+  const discount = getDiscount(product);
+  const stockStatus = getStockStatus(product);
+
+  // Breadcrumb
+  document.getElementById('breadcrumb').innerHTML = `
+    <a href="index.html">Home</a><span>/</span>
+    <a href="index.html#${product.categoryId}">${product.category}</a><span>/</span>
+    ${product.name}`;
+
+  // Badges
+  let badgesHtml = '';
+  if (discount > 0) badgesHtml += `<span class="badge badge-sale">${discount}% OFF</span>`;
+  if (product.isBestseller) badgesHtml += `<span class="badge badge-bestseller">BESTSELLER</span>`;
+  if (product.isFeatured) badgesHtml += `<span class="badge badge-new">NEW</span>`;
+  if (stockStatus.class === 'out-of-stock') badgesHtml += `<span class="badge badge-outofstock">SOLD OUT</span>`;
+
+  // Variants
+  let variantsHtml = '';
+  if (product.variants && product.variants.length > 0) {
+    const variantGroups = {};
+    product.variants.forEach(v => {
+      if (!variantGroups[v.name]) variantGroups[v.name] = [];
+      variantGroups[v.name].push(v);
+    });
+    Object.entries(variantGroups).forEach(([groupName, variants]) => {
+      selectedVariant = selectedVariant || variants[0].id;
+      variantsHtml += `
+        <div class="variant-section">
+          <div class="variant-label">${groupName}: <span id="selectedVariantName">${variants[0].value}</span></div>
+          <div class="variant-options">
+            ${variants.map((v, i) => `
+              <button class="variant-btn ${i === 0 ? 'active' : ''}"
+                data-variant-id="${v.id}" data-variant-name="${v.value}" data-modifier="${v.priceModifier}"
+                onclick="selectVariant(this, '${v.id}', '${v.value}', ${v.priceModifier})">
+                ${v.value}${v.priceModifier > 0 ? ' (+' + formatPrice(v.priceModifier) + ')' : ''}
+              </button>
+            `).join('')}
+          </div>
+        </div>`;
+    });
+  }
+
+  // Related products
   const allIds = Object.keys(products).filter(id => id !== productId);
   const relatedIds = allIds.sort(() => 0.5 - Math.random()).slice(0, 4);
   const relatedHtml = relatedIds.map(id => {
     const p = products[id];
+    const d = getDiscount(p);
     return `
       <a href="${id}.html" class="related-card">
-        <div class="related-card-img"><img src="${p.img}" alt="${p.name}"></div>
+        <div class="related-card-img">
+          <img src="${p.img}" alt="${p.name}">
+          ${d > 0 ? `<span class="related-card-badge">${d}% OFF</span>` : ''}
+        </div>
         <div class="related-card-info">
           <h4>${p.name}</h4>
-          <p>${p.category}</p>
+          <p class="rc-category">${p.category}</p>
+          <span class="rc-price">${formatPrice(p.price)}</span>
+          ${p.compareAtPrice > p.price ? `<span class="rc-mrp">${formatPrice(p.compareAtPrice)}</span>` : ''}
         </div>
-      </a>
-    `;
+      </a>`;
   }).join('');
-  
+
+  // Features
   const featuresHtml = product.features.map(f => `<li>${f}</li>`).join('');
-  
+
+  // Render
   document.getElementById('productPage').innerHTML = `
     <div class="product-grid">
-      <div class="product-image">
-        <span class="product-badge">Launching Soon</span>
-        <img src="${product.img}" alt="${product.name}">
+      <div class="product-image-wrap">
+        <div class="product-image">
+          <div class="product-badges">${badgesHtml}</div>
+          <img src="${product.img}" alt="${product.name}">
+        </div>
       </div>
       <div class="product-info">
-        <h1>${product.name}</h1>
+        <div class="product-brand">${product.brand || 'Nappilos'}</div>
+        <h1 class="product-title">${product.name}</h1>
         <p class="product-tagline">${product.tagline}</p>
-        <p class="product-desc">${product.desc}</p>
-        
-        <div class="product-meta">
-          <div class="meta-item">
-            <span class="meta-label">Category</span>
-            <span class="meta-value">${product.category}</span>
+
+        <div class="product-rating">
+          <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span class="rating-text">(4.8 / 5 — 120+ reviews)</span>
+        </div>
+
+        <div class="product-price-wrap">
+          <span class="price-current" id="displayPrice">${formatPrice(product.price)}</span>
+          ${product.compareAtPrice > product.price ? `<span class="price-mrp" id="displayMrp">${formatPrice(product.compareAtPrice)}</span>` : ''}
+          ${discount > 0 ? `<span class="price-discount" id="displayDiscount">${discount}% OFF</span>` : ''}
+        </div>
+        <div class="price-gst">Inclusive of ${product.gstRate}% GST | <span id="displayShipping">${product.price >= 999 ? 'Free' : formatPrice(69) + ' '} shipping</span></div>
+
+        <div class="stock-status">
+          <span class="stock-dot ${stockStatus.class}"></span>
+          <span class="stock-text ${stockStatus.class}">${stockStatus.label}${stockStatus.class === 'low-stock' ? ' — Only ' + product.stockQuantity + ' left!' : ''}</span>
+        </div>
+
+        ${variantsHtml}
+
+        <div class="add-to-cart-section">
+          <div class="qty-picker">
+            <button class="qty-btn" onclick="changeQty(-1)">-</button>
+            <div class="qty-value" id="qtyValue">1</div>
+            <button class="qty-btn" onclick="changeQty(1)">+</button>
           </div>
-          <div class="meta-item">
-            <span class="meta-label">Age Group</span>
-            <span class="meta-value">${product.age}</span>
+          <button class="btn-add-cart" id="addToCartBtn" onclick="addToCart()" ${stockStatus.class === 'out-of-stock' ? 'disabled' : ''}>
+            ${stockStatus.class === 'out-of-stock' ? '&#x1F6AB; Out of Stock' : '&#x1F6D2; Add to Cart'}
+          </button>
+          <button class="btn-wishlist ${NappilosCart.isInWishlist(productId) ? 'active' : ''}" onclick="toggleWishlistBtn(this)">
+            ${NappilosCart.isInWishlist(productId) ? '&#x2764;' : '&#x1F90D;'}
+          </button>
+        </div>
+
+        ${stockStatus.class !== 'out-of-stock' ? `<button class="btn-buy-now" onclick="buyNow()">&#x26A1; Buy Now</button>` : ''}
+
+        <div class="trust-badges">
+          <div class="trust-badge">
+            <div class="trust-badge-icon">&#x1F69A;</div>
+            <div class="trust-badge-text">Free Delivery 999+</div>
           </div>
-          <div class="meta-item">
-            <span class="meta-label">Material</span>
-            <span class="meta-value">${product.material}</span>
+          <div class="trust-badge">
+            <div class="trust-badge-icon">&#x1F512;</div>
+            <div class="trust-badge-text">Secure Payment</div>
           </div>
-          <div class="meta-item">
-            <span class="meta-label">Color/Print</span>
-            <span class="meta-value">${product.color}</span>
+          <div class="trust-badge">
+            <div class="trust-badge-icon">&#x2705;</div>
+            <div class="trust-badge-text">100% Safe for Kids</div>
           </div>
         </div>
-        
+
+        <div class="product-meta">
+          <div class="meta-item"><span class="meta-label">SKU</span><span class="meta-value">${product.sku}</span></div>
+          <div class="meta-item"><span class="meta-label">Category</span><span class="meta-value">${product.category}</span></div>
+          <div class="meta-item"><span class="meta-label">Age Group</span><span class="meta-value">${product.age}</span></div>
+          <div class="meta-item"><span class="meta-label">Material</span><span class="meta-value">${product.material}</span></div>
+          <div class="meta-item"><span class="meta-label">Color</span><span class="meta-value">${product.color}</span></div>
+          ${product.weight ? `<div class="meta-item"><span class="meta-label">Weight</span><span class="meta-value">${product.weight}</span></div>` : ''}
+          ${product.dimensions ? `<div class="meta-item"><span class="meta-label">Size</span><span class="meta-value">${product.dimensions}</span></div>` : ''}
+        </div>
+
+        <div class="product-desc-section">
+          <h3>Description</h3>
+          <p class="product-desc">${product.desc}</p>
+        </div>
+
         <div class="product-features">
           <h3>Key Features</h3>
           <ul class="features-list">${featuresHtml}</ul>
         </div>
-        
-        <div class="product-cta">
-          <h3>Be the First to Know!</h3>
-          <p>This product is launching soon. Get notified on WhatsApp when it's available.</p>
-          <a href="https://wa.me/917382583039?text=Hi%20Nappilos!%20I'm%20interested%20in%20the%20${encodeURIComponent(product.name)}.%20Please%20notify%20me%20when%20it%20launches!" class="btn-whatsapp">
-            &#x1F4AC; Notify Me on WhatsApp
-          </a>
+
+        <div class="share-section">
+          <span>Share:</span>
+          <button class="share-btn" onclick="shareProduct('whatsapp')" title="WhatsApp">&#x1F4AC;</button>
+          <button class="share-btn" onclick="shareProduct('copy')" title="Copy Link">&#x1F517;</button>
+          <button class="share-btn" onclick="shareProduct('twitter')" title="Twitter">&#x1D54F;</button>
         </div>
       </div>
     </div>
-    
+
     <div class="related-section">
       <h2>You May Also Like</h2>
       <div class="related-grid">${relatedHtml}</div>
-    </div>
-  `;
+    </div>`;
+}
+
+/* ── Interactions ── */
+function selectVariant(btn, variantId, variantName, modifier) {
+  selectedVariant = variantId;
+  document.querySelectorAll('.variant-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('selectedVariantName').textContent = variantName;
+  const newPrice = product.price + modifier;
+  document.getElementById('displayPrice').textContent = formatPrice(newPrice);
+  const discount = product.compareAtPrice > newPrice ? Math.round(((product.compareAtPrice - newPrice) / product.compareAtPrice) * 100) : 0;
+  const discountEl = document.getElementById('displayDiscount');
+  if (discountEl) {
+    discountEl.textContent = discount + '% OFF';
+    discountEl.style.display = discount > 0 ? '' : 'none';
+  }
+}
+
+function changeQty(delta) {
+  quantity = Math.max(1, Math.min(quantity + delta, product.stockQuantity));
+  document.getElementById('qtyValue').textContent = quantity;
+}
+
+function addToCart() {
+  NappilosCart.addItem(productId, selectedVariant, quantity);
+  const btn = document.getElementById('addToCartBtn');
+  btn.classList.add('added');
+  btn.innerHTML = '&#x2713; Added to Cart!';
+  setTimeout(() => {
+    btn.classList.remove('added');
+    btn.innerHTML = '&#x1F6D2; Add to Cart';
+  }, 1500);
+  openCartDrawer();
+}
+
+function buyNow() {
+  NappilosCart.addItem(productId, selectedVariant, quantity);
+  checkout();
+}
+
+function toggleWishlistBtn(btn) {
+  const added = NappilosCart.toggleWishlist(productId);
+  btn.classList.toggle('active', added);
+  btn.innerHTML = added ? '&#x2764;' : '&#x1F90D;';
+}
+
+function shareProduct(method) {
+  const url = window.location.href;
+  const text = `Check out ${product.name} on Nappilos! ${formatPrice(product.price)}`;
+  if (method === 'whatsapp') {
+    window.open(`https://wa.me/?text=${encodeURIComponent(text + ' ' + url)}`, '_blank');
+  } else if (method === 'twitter') {
+    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
+  } else if (method === 'copy') {
+    navigator.clipboard.writeText(url).then(() => alert('Link copied!'));
+  }
 }
 </script>
 </body>
