@@ -1,31 +1,15 @@
 /**
  * Nappilos API Integration Layer
- * Connects frontend to NestJS unified backend
- * Products are managed via admin panel (Nappilos-Login)
+ * Connects storefront to unified backend API
+ * Single storefront approach - all products in one place
  */
 
 const NappilosAPI = (() => {
   // Backend API base URL
   const BASE_URL = 'https://api.nappilos.com/api/v1';
   
-  // Current platform context (set based on subdomain)
-  let PLATFORM = 'main';
-  
-  // Detect platform from subdomain
-  function detectPlatform() {
-    const hostname = window.location.hostname;
-    if (hostname.includes('baby')) PLATFORM = 'baby';
-    else if (hostname.includes('kids')) PLATFORM = 'kids';
-    else if (hostname.includes('learn')) PLATFORM = 'learn';
-    else if (hostname.includes('toys')) PLATFORM = 'toys';
-    else if (hostname.includes('books')) PLATFORM = 'nextbooks';
-    else PLATFORM = 'main';
-    
-    console.log('Platform detected:', PLATFORM);
-  }
-
-  // Initialize on load
-  detectPlatform();
+  // Single storefront - no platform detection needed
+  const PLATFORM = 'main';
 
   /* ── Auth ── */
   function getToken() {
@@ -85,22 +69,12 @@ const NappilosAPI = (() => {
   /* ── Products ── */
   
   /**
-   * Fetch products for current platform
+   * Fetch all active products
    * @param {Object} filters - Optional filters
-   * @param {number} filters.page - Page number (default: 1)
-   * @param {number} filters.limit - Items per page (default: 20)
-   * @param {string} filters.search - Search term
-   * @param {string} filters.categoryId - Filter by category
-   * @param {string} filters.ageGroup - Filter by age group
-   * @param {number} filters.minPrice - Minimum price
-   * @param {number} filters.maxPrice - Maximum price
-   * @param {string} filters.sortBy - Sort field (name, price, createdAt)
-   * @param {string} filters.sortOrder - Sort order (asc, desc)
    */
   async function fetchProducts(filters = {}) {
     try {
       const params = new URLSearchParams({
-        platforms: PLATFORM,
         isActive: 'true',
         page: filters.page || 1,
         limit: filters.limit || 20,
@@ -109,7 +83,8 @@ const NappilosAPI = (() => {
         ...(filters.ageGroup ? { ageGroup: filters.ageGroup } : {}),
         ...(filters.minPrice ? { minPrice: filters.minPrice } : {}),
         ...(filters.maxPrice ? { maxPrice: filters.maxPrice } : {}),
-        ...(filters.sortBy ? { sortBy: filters.sortBy, sortOrder: filters.sortOrder || 'asc' } : {})
+        ...(filters.sortBy ? { sortBy: filters.sortBy, sortOrder: filters.sortOrder || 'asc' } : {}),
+        ...(filters.tag ? { tag: filters.tag } : {})
       });
       
       const res = await fetch(`${BASE_URL}/products?${params}`);
@@ -132,11 +107,11 @@ const NappilosAPI = (() => {
   }
 
   /**
-   * Fetch single product by ID
+   * Fetch single product by ID or slug
    */
-  async function fetchProduct(id) {
+  async function fetchProduct(idOrSlug) {
     try {
-      const res = await fetch(`${BASE_URL}/products/${id}`);
+      const res = await fetch(`${BASE_URL}/products/${idOrSlug}`);
       const data = await res.json();
       
       if (data.success) {
@@ -150,12 +125,11 @@ const NappilosAPI = (() => {
   }
 
   /**
-   * Fetch featured products for current platform
+   * Fetch featured products
    */
   async function fetchFeaturedProducts() {
     try {
       const params = new URLSearchParams({
-        platforms: PLATFORM,
         isActive: 'true',
         isFeatured: 'true',
         limit: 10
@@ -175,12 +149,11 @@ const NappilosAPI = (() => {
   }
 
   /**
-   * Fetch bestsellers for current platform
+   * Fetch bestsellers
    */
   async function fetchBestsellers() {
     try {
       const params = new URLSearchParams({
-        platforms: PLATFORM,
         isActive: 'true',
         isBestseller: 'true',
         limit: 10
@@ -196,6 +169,54 @@ const NappilosAPI = (() => {
     } catch (e) {
       console.error('Fetch bestsellers error:', e);
       return { success: false, message: 'Failed to fetch bestsellers' };
+    }
+  }
+
+  /**
+   * Fetch products by category
+   */
+  async function fetchProductsByCategory(categoryId) {
+    try {
+      const params = new URLSearchParams({
+        isActive: 'true',
+        categoryId: categoryId,
+        limit: 50
+      });
+      
+      const res = await fetch(`${BASE_URL}/products?${params}`);
+      const data = await res.json();
+      
+      if (data.success) {
+        return { success: true, data: data.data.data };
+      }
+      return { success: false, message: data.message };
+    } catch (e) {
+      console.error('Fetch products by category error:', e);
+      return { success: false, message: 'Failed to fetch products' };
+    }
+  }
+
+  /**
+   * Fetch products by age group
+   */
+  async function fetchProductsByAge(ageGroup) {
+    try {
+      const params = new URLSearchParams({
+        isActive: 'true',
+        ageGroup: ageGroup,
+        limit: 50
+      });
+      
+      const res = await fetch(`${BASE_URL}/products?${params}`);
+      const data = await res.json();
+      
+      if (data.success) {
+        return { success: true, data: data.data.data };
+      }
+      return { success: false, message: data.message };
+    } catch (e) {
+      console.error('Fetch products by age error:', e);
+      return { success: false, message: 'Failed to fetch products' };
     }
   }
 
@@ -265,58 +286,19 @@ const NappilosAPI = (() => {
 
   /* ── Helper Functions ── */
   
-  /**
-   * Format price in INR
-   */
   function formatPrice(price) {
     return '₹' + Number(price).toLocaleString('en-IN');
   }
 
-  /**
-   * Calculate discount percentage
-   */
   function getDiscount(product) {
     if (!product.compareAtPrice || product.compareAtPrice <= product.price) return 0;
     return Math.round(((product.compareAtPrice - product.price) / product.compareAtPrice) * 100);
   }
 
-  /**
-   * Get stock status
-   */
   function getStockStatus(product) {
     if (product.stockQuantity === 0) return { label: 'Out of Stock', class: 'out-of-stock' };
     if (product.stockQuantity <= product.lowStockThreshold) return { label: 'Low Stock', class: 'low-stock' };
     return { label: 'In Stock', class: 'in-stock' };
-  }
-
-  /**
-   * Get platform name
-   */
-  function getPlatformName() {
-    const names = {
-      main: 'Nappilos',
-      baby: 'Nappilos Baby',
-      kids: 'Nappilos Kids',
-      learn: 'Nappilos Learn',
-      toys: 'Nappilos Toys',
-      nextbooks: 'Nappilos Books'
-    };
-    return names[PLATFORM] || 'Nappilos';
-  }
-
-  /**
-   * Get platform age range
-   */
-  function getPlatformAgeRange() {
-    const ranges = {
-      main: 'All Ages',
-      baby: '0-3 Years',
-      kids: '4-12 Years',
-      learn: 'Learning',
-      toys: 'Toys',
-      nextbooks: 'Books'
-    };
-    return ranges[PLATFORM] || 'All Ages';
   }
 
   return {
@@ -331,6 +313,8 @@ const NappilosAPI = (() => {
     fetchProduct,
     fetchFeaturedProducts,
     fetchBestsellers,
+    fetchProductsByCategory,
+    fetchProductsByAge,
     
     // Categories
     fetchCategories,
@@ -343,8 +327,6 @@ const NappilosAPI = (() => {
     formatPrice,
     getDiscount,
     getStockStatus,
-    getPlatformName,
-    getPlatformAgeRange,
     
     // Constants
     PLATFORM,
@@ -352,9 +334,4 @@ const NappilosAPI = (() => {
   };
 })();
 
-// Auto-detect platform on load
-window.addEventListener('DOMContentLoaded', () => {
-  console.log('Nappilos Platform:', NappilosAPI.PLATFORM);
-  console.log('Platform Name:', NappilosAPI.getPlatformName());
-  console.log('Age Range:', NappilosAPI.getPlatformAgeRange());
-});
+console.log('Nappilos API initialized - Single Storefront Mode');
